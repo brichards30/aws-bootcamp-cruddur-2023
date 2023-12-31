@@ -1,19 +1,16 @@
 [
-    {
+  {
       "Notification": {
-        "NotificationType": "ACTUAL"|"FORECASTED",
-        "ComparisonOperator": "GREATER_THAN"|"LESS_THAN"|"EQUAL_TO",
-        "Threshold": double,
-        "ThresholdType": "PERCENTAGE"|"ABSOLUTE_VALUE",
-        "NotificationState": "OK"|"ALARM"
+          "ComparisonOperator": "GREATER_THAN",
+          "NotificationType": "ACTUAL",
+          "Threshold": 80,
+          "ThresholdType": "PERCENTAGE"
       },
       "Subscribers": [
-        {
-          "SubscriptionType": "SNS"|"EMAIL",
-          "Address": "string"
-        }
-        ...
+          {
+              "Address": "brichards3030@gmail.com",
+              "SubscriptionType": "EMAIL"
+          }
       ]
-    }
-    ...
-  ]
+  }
+]
