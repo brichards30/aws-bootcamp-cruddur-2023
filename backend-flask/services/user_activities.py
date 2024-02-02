@@ -1,6 +1,8 @@
 from datetime import datetime, timedelta, timezone
+from aws_xray_sdk.core import xray_recorder
 class UserActivities:
   def run(user_handle):
+    with xray_recorder.in_segment('user_activities') as segment:
     model = {
       'errors': None,
       'data': None
@@ -20,4 +22,10 @@ class UserActivities:
         'expires_at': (now + timedelta(days=31)).isoformat()
       }]
       model['data'] = results
+    subsegment = xray_recorder.begin_subsegment('mock-data')
+    dict = {
+      "now": now.isoformat()
+      "results-size":len(model['data'])
+    }
+    segment.put_metadata('key', dict, 'namespace')
     return model
